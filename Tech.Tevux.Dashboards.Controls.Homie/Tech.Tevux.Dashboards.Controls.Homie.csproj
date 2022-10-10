@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <OutputType>Library</OutputType>
+    <Version>0.18.7</Version>
+    <Company>Tevux Technologies, MB</Company>
+    <Copyright>© 2022 Tevux Technologies, MB</Copyright>
+    <Title>Homie controls for Tevux Dashboards</Title>
+    <Authors>DevBot9</Authors>
+    <Description>Provides most common Homie (https://homieiot.github.io/) controls, like Button and Indicator.</Description>
+    <NuspecFile>Tech.Tevux.Dashboards.Controls.Homie.nuspec</NuspecFile>
+    <NuspecProperties>
+      version=$(Version);
+      id=$(AssemblyName);
+      copyright=$(Copyright);
+      title=$(Title);
+      authors=$(Authors);
+      description=$(Description)
+    </NuspecProperties>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="DevBot9.Mvvm" Version="21.1.0" />
+    <PackageReference Include="DevBot9.Mvvm.UI" Version="21.1.0" />
+    <PackageReference Include="DevBot9.Protocols.Homie.Utilities" Version="0.12.0-preview.21" />
+    <PackageReference Include="Tech.Tevux.Dashboards.Controls.Base" Version="0.18.0" />
+    <PackageReference Include="Tevux.Dashboards.Abstractions" Version="0.38.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Tevux.M2Mqtt" Version="0.19.0-preview.7" />
+    <PackageReference Include="Tevux.Software.Helpers" Version="0.18.0" />
+    <PackageReference Include="Tevux.Tools.RepositorySettings" Version="1.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Themes\Button.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Generic.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\DeviceStatus.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Themes\Indicator.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+  <!--Tevux related settings-->
+  <PropertyGroup>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="Tevux.Dashboards.Abstractions.AssemblyLoadContextAttribute">
+      <ContextName>Tech.Tevux.Dashboards.Controls.Homie</ContextName>
+      <ContextFriendlyName>Homie</ContextFriendlyName>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Code\Controls\Connection\ExposedProperties\" />
+    <Folder Include="Code\Controls\Connection\TemplateProperties\" />
+  </ItemGroup>
+</Project>

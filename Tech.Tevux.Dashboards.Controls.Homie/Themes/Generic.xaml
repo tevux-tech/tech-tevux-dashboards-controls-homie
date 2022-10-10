@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Button.xaml" />
+        <ResourceDictionary Source="Indicator.xaml" />
+        <ResourceDictionary Source="DeviceStatus.xaml" />
+        <ResourceDictionary Source="Connection.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
