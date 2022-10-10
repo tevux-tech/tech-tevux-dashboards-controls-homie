@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
 	<metadata>
-		<id>$id$</id>
+		<id>Tech.Tevux.Dashboards.Controls.Homie</id>
 		<version>$version$</version>
-		<title>$title$</title>
-		<authors>$authors$</authors>
-		<copyright>$copyright$</copyright>
+		<title>Homie controls for Tevux Dashboards</title>
+		<authors>Tevux Technologies</authors>
+		<copyright>© 2022 Tevux Technologies</copyright>
 		<license type="expression">MIT</license>
 		<requireLicenseAcceptance>true</requireLicenseAcceptance>
 		<tags>tevux.dashboards.library</tags>
-		<description>$description$</description>
+		<description>Provides most common Homie (https://homieiot.github.io/) controls, like Button and Indicator.</description>
+		<repository type="git" url="$repository$" />
+		<projectUrl>$projectUrl$</projectUrl>
 		<frameworkReferences>
 			<group targetFramework="net6.0-windows7.0">
 				<frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
@@ -17,6 +19,6 @@
 		</frameworkReferences>
 	</metadata>
 	<files>
-		<file src="bin\Debug\net6.0-windows\**" target="lib\net6.0" exclude="**\*.exe"  />
+		<file src="bin\Release\net6.0-windows\**" target="lib\net6.0" exclude="**\*.exe"  />
 	</files>
 </package>

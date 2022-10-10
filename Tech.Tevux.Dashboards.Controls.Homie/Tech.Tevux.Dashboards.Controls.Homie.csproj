@@ -4,7 +4,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <OutputType>Library</OutputType>
-    <Version>0.18.7</Version>
+    <Version>0.20.0-preview.0</Version>
     <Company>Tevux Technologies, MB</Company>
     <Copyright>© 2022 Tevux Technologies, MB</Copyright>
     <Title>Homie controls for Tevux Dashboards</Title>
