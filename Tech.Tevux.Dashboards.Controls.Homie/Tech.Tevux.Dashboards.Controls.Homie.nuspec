@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package>
 	<metadata>
-		<id>Tech.Tevux.Dashboards.Controls.Homie</id>
+		<id>$id$</id>
 		<version>$version$</version>
-		<title>Homie controls for Tevux Dashboards</title>
-		<authors>Tevux Technologies</authors>
-		<copyright>© 2022 Tevux Technologies</copyright>
+		<title>$title$</title>
+		<authors>$authors$</authors>
+		<copyright>$copyright$</copyright>
+		<description>$description$</description>
 		<license type="expression">MIT</license>
 		<requireLicenseAcceptance>true</requireLicenseAcceptance>
-		<tags>tevux.dashboards.library</tags>
-		<description>Provides most common Homie (https://homieiot.github.io/) controls, like Button and Indicator.</description>
 		<repository type="git" url="$repository$" />
 		<projectUrl>$projectUrl$</projectUrl>
+		<tags>tevux.dashboards.library</tags>
 		<frameworkReferences>
 			<group targetFramework="net6.0-windows7.0">
 				<frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
