@@ -1,26 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <OutputType>Library</OutputType>
-    <Version>0.18.7</Version>
-    <Company>Tevux Technologies, MB</Company>
-    <Copyright>© 2022 Tevux Technologies, MB</Copyright>
+    <Version>0.20.0-preview.3</Version>
+    <Company>Tevux Technologies</Company>
+    <Copyright>© 2022 Tevux Technologies</Copyright>
     <Title>Homie controls for Tevux Dashboards</Title>
-    <Authors>DevBot9</Authors>
+    <Authors>devbotas</Authors>
     <Description>Provides most common Homie (https://homieiot.github.io/) controls, like Button and Indicator.</Description>
-    <NuspecFile>Tech.Tevux.Dashboards.Controls.Homie.nuspec</NuspecFile>
-    <NuspecProperties>
-      version=$(Version);
-      id=$(AssemblyName);
-      copyright=$(Copyright);
-      title=$(Title);
-      authors=$(Authors);
-      description=$(Description)
-    </NuspecProperties>
+    <RepositoryUrl>https://github.com/tevux-tech/tech-tevux-dashboards-controls-homie</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/tevux-tech/tech-tevux-dashboards-controls-homie</PackageProjectUrl>
+
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+
+    <!--Configuring source Link-->
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+    <!--End-->
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <!--This enables "deterministic builds"-->
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
   <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="DevBot9.Mvvm" Version="21.1.0" />
     <PackageReference Include="DevBot9.Mvvm.UI" Version="21.1.0" />
     <PackageReference Include="DevBot9.Protocols.Homie.Utilities" Version="0.12.0-preview.21" />
