@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <OutputType>Library</OutputType>
-    <Version>0.21.0-preview.2</Version>
+    <Version>0.21.0-preview.4</Version>
     <Company>Tevux Technologies</Company>
     <Copyright>© 2022 Tevux Technologies</Copyright>
     <Title>Homie controls for Tevux Dashboards</Title>
@@ -27,17 +27,14 @@
     <!--This enables "deterministic builds"-->
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="..\README.md" Pack="True" PackagePath="\" />
-    <None Include="Resources\tevux-logo-symbol.png" Pack="True" PackagePath="\" />
-  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
     <PackageReference Include="DevBot9.Mvvm" Version="21.1.0" />
     <PackageReference Include="DevBot9.Mvvm.UI" Version="21.1.0" />
     <PackageReference Include="DevBot9.Protocols.Homie.Utilities" Version="0.12.0-preview.21" />
-    <PackageReference Include="Tech.Tevux.Dashboards.Controls.Base" Version="0.23.0-preview.10" />
-    <PackageReference Include="Tevux.Dashboards.Abstractions" Version="0.41.0-preview.15">
+    <PackageReference Include="Tech.Tevux.Dashboards.Controls.Base" Version="0.23.0-preview.4" />
+    <PackageReference Include="Tevux.Dashboards.Abstractions" Version="0.41.0-preview.4">
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tevux.M2Mqtt" Version="0.19.0-preview.7" />
