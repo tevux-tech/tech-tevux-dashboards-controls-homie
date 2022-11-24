@@ -1,7 +1,7 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 public class LibrarySupervisor : ISharedLibraryMessengerInitializer {
-    internal ISharedLibraryMessenger GlobalMessenger { get; private set; }
+    internal ISharedLibraryMessenger GlobalMessenger { get; private set; } = new EmptyPluginMessenger();
     private bool _isInitialized;
     public static LibrarySupervisor Instance { get; } = new LibrarySupervisor();
 
