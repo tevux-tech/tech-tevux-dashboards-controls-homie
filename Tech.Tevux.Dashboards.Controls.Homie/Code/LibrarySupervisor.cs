@@ -1,14 +1,13 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public class LibrarySupervisor : ISharedLibraryMessengerInitializer {
-    internal ISharedLibraryMessenger GlobalMessenger { get; private set; } = new EmptyPluginMessenger();
+public class LibrarySupervisor : ISharedLibraryMessengerConsumer {
+    internal ISharedLibraryMessenger GlobalMessenger { get; private set; } = new EmptyLibraryMessenger();
     private bool _isInitialized;
     public static LibrarySupervisor Instance { get; } = new LibrarySupervisor();
 
-    public void Initialize(ISharedLibraryMessenger scriptCommunicator) {
+    public void Initialize() {
         if (_isInitialized) { return; }
 
-        GlobalMessenger = scriptCommunicator;
 
         _isInitialized = true;
     }
@@ -31,6 +30,10 @@ public class LibrarySupervisor : ISharedLibraryMessengerInitializer {
         getMessage.Key = $"cache.{owner.GetType().FullName}.{propertyName}";
         getMessage.Value = value;
         GlobalMessenger.Send(getMessage);
+    }
+
+    public void SetSharedMessenger(ISharedLibraryMessenger sharedMessenger) {
+        GlobalMessenger = sharedMessenger;
     }
 }
 
