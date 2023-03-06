@@ -37,7 +37,7 @@ public partial class DeviceStatus : OutputControlBase {
         }
     }
 
-    private void HandleDeviceUpdatedMessage(object sender, DeviceUpdatedEventArgs deviceUpdatedEventArgs) {
+    private void HandleDeviceUpdatedMessage(object? sender, DeviceUpdatedEventArgs deviceUpdatedEventArgs) {
         if (_isDisposed) { return; }
 
         Dispatcher.Invoke(() => {
