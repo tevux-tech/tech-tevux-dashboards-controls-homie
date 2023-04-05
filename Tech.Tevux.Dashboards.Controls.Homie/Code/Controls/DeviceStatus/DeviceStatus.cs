@@ -1,11 +1,8 @@
-﻿using DevBot9.Mvvm;
+﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-namespace Tech.Tevux.Dashboards.Controls.Homie;
-
-[DashboardControl]
 [Category("Homie")]
 public partial class DeviceStatus : OutputControlBase {
-    private bool _isDisposed = false;
+    private bool _isDisposed;
 
     static DeviceStatus() {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(DeviceStatus), new FrameworkPropertyMetadata(typeof(DeviceStatus)));
@@ -35,6 +32,8 @@ public partial class DeviceStatus : OutputControlBase {
             // Free unmanaged resources here and set large fields to null.
             _isDisposed = true;
         }
+
+        base.Dispose(isCalledManually);
     }
 
     private void HandleDeviceUpdatedMessage(object? sender, DeviceUpdatedEventArgs deviceUpdatedEventArgs) {

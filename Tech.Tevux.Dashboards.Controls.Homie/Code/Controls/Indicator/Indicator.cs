@@ -1,9 +1,8 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-[DashboardControl]
 [Category("Homie")]
 public partial class Indicator : OutputControlBase {
-    private bool _isDisposed = false;
+    private bool _isDisposed;
 
     static Indicator() {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(Indicator), new FrameworkPropertyMetadata(typeof(Indicator)));
@@ -26,6 +25,8 @@ public partial class Indicator : OutputControlBase {
             // Free unmanaged resources here and set large fields to null.
             _isDisposed = true;
         }
+
+        base.Dispose(isCalledManually);
     }
     protected virtual void UpdateHomiePropertyMetadata() {
         PropertySwitcher.UpdateHomiePropertyMetadata(DeviceId, NodeId, PropertyId, out var errorMessage);

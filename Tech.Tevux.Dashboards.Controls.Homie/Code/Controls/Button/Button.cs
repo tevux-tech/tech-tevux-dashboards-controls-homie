@@ -2,7 +2,6 @@
 
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-[DashboardControl]
 [Category("Homie")]
 public partial class Button : InputControlBase {
     static Button() {
