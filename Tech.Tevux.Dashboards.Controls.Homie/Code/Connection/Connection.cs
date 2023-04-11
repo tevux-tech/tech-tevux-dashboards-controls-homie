@@ -1,5 +1,6 @@
 ﻿using DevBot9.Mvvm;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NLog;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
@@ -25,14 +26,11 @@ public partial class Connection : Control, IDisposable, IConnection {
 
         // Trying to read definitions from cache. Lots of failure points here.
         if (MyLibrary.Instance.Cache.TryRead(this, nameof(AvailableDefinitions), out var value)) {
-            if (value is string definitionsString) {
-                var foundConnectionDefinitions = JsonConvert.DeserializeObject<List<ConnectionDefinition>>(definitionsString);
-                if (foundConnectionDefinitions is List<ConnectionDefinition> definitionsList) {
-                    // User has something defined in the file.
-                    foreach (var definition in definitionsList) {
-                        _realDefinitionCollection.Add(definition);
-                    }
-
+            var foundConnectionDefinitions = JsonConvert.DeserializeObject<List<ConnectionDefinition>>(value!.ToString()!);
+            if (foundConnectionDefinitions is List<ConnectionDefinition> definitionsList) {
+                // User has something defined in the file.
+                foreach (var definition in definitionsList) {
+                    _realDefinitionCollection.Add(definition);
                 }
             }
         }
