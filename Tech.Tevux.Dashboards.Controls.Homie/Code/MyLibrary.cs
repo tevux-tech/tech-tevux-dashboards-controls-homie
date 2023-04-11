@@ -33,10 +33,9 @@ public class MyLibrary : ILibrary,
     public IConnection Connection => _connectionFrontBackEnd;
     public Dictionary<System.Type, List<System.Type>> DashboardControlEditors { get; private set; } = new();
     public List<System.Type> DashboardControls { get; private set; } = new();
-    public object GuiControl => _connectionFrontBackEnd;
+    public object ConnectionGuiControl => _connectionFrontBackEnd;
 
     #endregion
-
 
     #region ILibrary
 
@@ -50,7 +49,6 @@ public class MyLibrary : ILibrary,
     }
 
     #endregion
-
 
     #region IDisposable
 

@@ -1,6 +1,5 @@
 ﻿using DevBot9.Mvvm;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NLog;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
