@@ -1,7 +1,9 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
+[HideExposedOption(nameof(Caption))]
+[HideExposedOption(nameof(Format))]
 [Category("Homie")]
-public partial class DeviceStatus : OutputControlBase {
+public partial class DeviceStatus : TextualOutputControlBase {
     private bool _isDisposed;
 
     static DeviceStatus() {

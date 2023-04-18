@@ -1,7 +1,8 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
+[HideExposedOption(nameof(Caption))]
 [Category("Homie")]
-public partial class Indicator : OutputControlBase {
+public partial class Indicator : TextualOutputControlBase {
     private bool _isDisposed;
 
     static Indicator() {

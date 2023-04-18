@@ -3,7 +3,7 @@
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [Category("Homie")]
-public partial class Button : InputControlBase {
+public partial class Button : ControlBase {
     static Button() {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(Button), new FrameworkPropertyMetadata(typeof(Button)));
     }

@@ -11,9 +11,6 @@ public class MyLibrary : ILibrary,
         DashboardControls.Add(typeof(Button));
         DashboardControls.Add(typeof(DeviceStatus));
         DashboardControls.Add(typeof(Indicator));
-
-        DashboardControlEditors.Add(typeof(Indicator), new List<System.Type>() { typeof(RulesEditor) });
-        DashboardControlEditors.Add(typeof(DeviceStatus), new List<System.Type>() { typeof(RulesEditor) });
     }
 
     public static MyLibrary Instance { get; } = new MyLibrary();
