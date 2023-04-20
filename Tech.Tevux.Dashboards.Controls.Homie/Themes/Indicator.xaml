@@ -6,7 +6,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Indicator}">
                     <Grid Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Background}">
-                        <Viewbox Style="{DynamicResource MyViewboxStyle}">
+                        <Viewbox Style="{DynamicResource TtViewboxStyle}">
                             <TextBlock x:Name="PART_MainText"
                                        FontSize="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=TextSize}"
                                        Foreground="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Foreground}"

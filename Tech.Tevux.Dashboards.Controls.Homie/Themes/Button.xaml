@@ -9,7 +9,7 @@
                         <Button x:Name="PART_MainButton"
                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
                                 Command="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ExecuteCommand}">
-                            <Viewbox Style="{DynamicResource MyViewboxStyle}">
+                            <Viewbox Style="{DynamicResource TtViewboxStyle}">
                                 <TextBlock x:Name="PART_MainText"
                                            FontSize="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=TextSize}"
                                            Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Caption}" />
