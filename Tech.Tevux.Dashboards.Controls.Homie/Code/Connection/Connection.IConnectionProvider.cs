@@ -2,7 +2,7 @@
 
 public partial class Connection {
     private readonly ObservableCollection<ConnectionDefinition> _realDefinitionCollection = new();
-    private ConnectionDefinition _currentDefinition;
+    private ConnectionDefinition _currentDefinition = null!;
     private bool _isConnected;
     private bool _isDisconnected = true;
 

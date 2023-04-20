@@ -9,7 +9,7 @@ namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 public partial class Connection : Control, IDisposable, IConnection {
 
-    private HomieWatcher _homieProvider;
+    private HomieWatcher _homieProvider = null!;
     public Connection() {
         AvailableDefinitions = _realDefinitionCollection;
         ConnectCommand = new AsyncCommand(() => Task.Factory.StartNew(() => TryConnect(out var _)), CanConnectExecute);

@@ -3,7 +3,7 @@
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 public partial class Connection {
-    public event PropertyChangedEventHandler PropertyChanged = delegate { };
+    public event PropertyChangedEventHandler? PropertyChanged = delegate { };
 
     protected void OnPropertyChanged(string propertyName) {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
