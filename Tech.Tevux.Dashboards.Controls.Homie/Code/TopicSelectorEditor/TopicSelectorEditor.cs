@@ -72,6 +72,10 @@ public partial class TopicSelectorEditor : Control, IDisposable, INotifyProperty
         if (_isDisposed == false) {
             if (isCalledManually) {
                 // Dispose managed objects here.
+                foreach (var device in AvailableDevices) {
+                    device.Dispose();
+                }
+                AvailableDevices.Clear();
             }
 
             // Free unmanaged resources here and set large fields to null.

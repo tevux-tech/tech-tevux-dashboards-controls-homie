@@ -13,6 +13,7 @@ public class MyLibrary : ILibrary,
         DashboardControls.Add(typeof(Indicator));
 
         DashboardControlEditors.Add(typeof(Indicator), new List<Type> { typeof(TopicSelectorEditor) });
+        DashboardControlEditors.Add(typeof(Button), new List<Type> { typeof(TopicSelectorEditor) });
     }
 
     public static MyLibrary Instance { get; } = new MyLibrary();
