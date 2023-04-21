@@ -2,7 +2,7 @@
 
 [HideExposedOption(nameof(Caption))]
 [Category("Homie")]
-public partial class Indicator : TextualOutputControlBase {
+public partial class Indicator : TextualOutputControlBase, IHomieTopicPath {
     private bool _isDisposed;
 
     static Indicator() {

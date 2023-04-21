@@ -5,5 +5,6 @@
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/Indicator.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/DeviceStatus.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/Connection.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/TopicSelectorEditor.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
