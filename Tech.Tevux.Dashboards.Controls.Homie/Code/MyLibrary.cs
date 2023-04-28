@@ -10,9 +10,11 @@ public class MyLibrary : ILibrary,
     private MyLibrary() {
         DashboardControls.Add(typeof(Button));
         DashboardControls.Add(typeof(DeviceStatus));
-        DashboardControls.Add(typeof(Indicator));
+        DashboardControls.Add(typeof(TextualIndicator));
+        DashboardControls.Add(typeof(NumericIndicator));
 
-        DashboardControlEditors.Add(typeof(Indicator), new List<Type> { typeof(TopicSelectorEditor) });
+        DashboardControlEditors.Add(typeof(TextualIndicator), new List<Type> { typeof(TopicSelectorEditor) });
+        DashboardControlEditors.Add(typeof(NumericIndicator), new List<Type> { typeof(TopicSelectorEditor) });
         DashboardControlEditors.Add(typeof(Button), new List<Type> { typeof(TopicSelectorEditor) });
     }
 

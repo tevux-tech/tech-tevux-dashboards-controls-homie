@@ -2,14 +2,14 @@
 
 [HideExposedOption(nameof(Caption))]
 [Category("Homie")]
-public partial class Indicator : TextualOutputControlBase, IHomieTopicPath {
+public partial class NumericIndicator : NumericOutputControlBase, IHomieTopicPath {
     private bool _isDisposed;
 
-    static Indicator() {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(Indicator), new FrameworkPropertyMetadata(typeof(Indicator)));
+    static NumericIndicator() {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(NumericIndicator), new FrameworkPropertyMetadata(typeof(NumericIndicator)));
     }
 
-    public Indicator() {
+    public NumericIndicator() {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         PropertySwitcher = new PropertySwitcher(HandleHomieValueChanged);
@@ -37,16 +37,13 @@ public partial class Indicator : TextualOutputControlBase, IHomieTopicPath {
     private void HandleHomieValueChanged() {
         Dispatcher.Invoke(() => {
             switch (PropertySwitcher.HomieProperty) {
-                case ClientTextProperty textProperty:
-                    Caption = textProperty.Value;
-                    break;
-
                 case ClientNumberProperty numberProperty:
-                    ApplyAppearanceRules((decimal)numberProperty.Value);
+                    NumericValue = (decimal)numberProperty.Value;
                     break;
 
+                case ClientTextProperty textProperty:
                 case ClientChoiceProperty choiceProperty:
-                    ApplyAppearanceRules(choiceProperty.Value);
+                    ErrorMessage = "Device return non-numeric values";
                     break;
             }
         });

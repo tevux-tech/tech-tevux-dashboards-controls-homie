@@ -1,10 +1,10 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Indicator {
+public partial class NumericIndicator {
     public static readonly DependencyProperty PropertySwitcherProperty = DependencyProperty.Register(
         nameof(PropertySwitcher),
         typeof(PropertySwitcher),
-        typeof(Indicator),
+        typeof(NumericIndicator),
         new PropertyMetadata(null));
 
     public PropertySwitcher PropertySwitcher {

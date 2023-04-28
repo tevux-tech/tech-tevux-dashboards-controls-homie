@@ -1,7 +1,6 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [HideExposedOption(nameof(Caption))]
-[HideExposedOption(nameof(Format))]
 [Category("Homie")]
 public partial class DeviceStatus : TextualOutputControlBase {
     private bool _isDisposed;
@@ -21,7 +20,7 @@ public partial class DeviceStatus : TextualOutputControlBase {
         HomieWatcher.Instance.DeviceUpdated += HandleDeviceUpdatedMessage;
 
         if (HomieWatcher.Instance.TryGetClientDevice(DeviceId, out var device)) {
-            ApplyAppearanceRules(device.State.ToString());
+            TextualValue = device.State.ToString();
         }
     }
 
@@ -44,7 +43,7 @@ public partial class DeviceStatus : TextualOutputControlBase {
         Dispatcher.Invoke(() => {
             if (deviceUpdatedEventArgs.DeviceId == DeviceId) {
                 if (HomieWatcher.Instance.TryGetClientDevice(DeviceId, out var device)) {
-                    ApplyAppearanceRules(device.State.ToString());
+                    TextualValue = device.State.ToString();
                 }
             };
         });

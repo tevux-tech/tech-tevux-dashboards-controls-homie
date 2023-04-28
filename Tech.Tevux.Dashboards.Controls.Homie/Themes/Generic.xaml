@@ -2,7 +2,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Base;Component/Themes/Generic.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/Button.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/Indicator.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/TextualIndicator.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/NumericIndicator.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/DeviceStatus.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/Connection.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/TopicSelectorEditor.xaml" />
