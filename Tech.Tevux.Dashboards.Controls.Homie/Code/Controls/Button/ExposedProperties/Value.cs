@@ -11,6 +11,6 @@ public partial class Button {
     [Category("Main")]
     public string Value {
         get { return (string)GetValue(ValueProperty); }
-        set { SetValue(ValueProperty, value); UpdateHomiePropertyMetadata(); }
+        set { SetValue(ValueProperty, value); }
     }
 }
