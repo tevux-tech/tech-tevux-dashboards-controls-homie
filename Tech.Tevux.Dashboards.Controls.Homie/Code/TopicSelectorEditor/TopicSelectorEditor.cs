@@ -49,8 +49,8 @@ public partial class TopicSelectorEditor : Control, IDisposable, INotifyProperty
             var devicesValue = devicesField.GetValue(HomieWatcher.Instance);
             if (devicesValue is ConcurrentDictionary<string, ClientDevice> devices) {
                 AvailableDevices.Clear();
-                foreach (var plaukas in devices) {
-                    AvailableDevices.Add(plaukas.Value);
+                foreach (var device in devices) {
+                    AvailableDevices.Add(device.Value);
                 }
             }
         }

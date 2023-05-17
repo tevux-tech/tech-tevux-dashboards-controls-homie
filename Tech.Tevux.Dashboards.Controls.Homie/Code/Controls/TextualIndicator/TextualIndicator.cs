@@ -1,4 +1,4 @@
-namespace Tech.Tevux.Dashboards.Controls.Homie;
+﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [HideExposedOption(nameof(Caption))]
 [Category("Homie")]
@@ -40,7 +40,7 @@ public partial class TextualIndicator : TextualOutputControlBase, IHomieTopicPat
                     break;
 
                 case ClientNumberProperty numberProperty:
-                    ErrorMessage = "Device return non-text values";
+                    ErrorMessage = "Device returns non-text values";
                     break;
 
                 case ClientChoiceProperty choiceProperty:

@@ -1,4 +1,4 @@
-namespace Tech.Tevux.Dashboards.Controls.Homie;
+﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [HideExposedOption(nameof(Caption))]
 [Category("Homie")]
@@ -41,7 +41,7 @@ public partial class NumericIndicator : NumericOutputControlBase, IHomieTopicPat
 
                 case ClientTextProperty textProperty:
                 case ClientChoiceProperty choiceProperty:
-                    ErrorMessage = "Device return non-numeric values";
+                    ErrorMessage = "Device returns non-numeric values";
                     break;
             }
         });

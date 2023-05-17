@@ -23,7 +23,12 @@ public partial class Connection {
         IsConnected = _homieProvider.IsConnected;
         IsDisconnected = !_homieProvider.IsConnected;
 
-        errorMessage = "";
+        if (IsDisconnected) {
+            errorMessage = $"Connection to {CurrentDefinition.Parameters} failed.";
+            MyLibrary.Instance.Log.Error(errorMessage);
+        } else {
+            errorMessage = "";
+        }
 
         return IsConnected;
     }
