@@ -1,4 +1,4 @@
-﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
+namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 public class MyLibrary : ILibrary,
                          IDashboardControlProvider,
@@ -45,7 +45,6 @@ public class MyLibrary : ILibrary,
         if (_isInitialized) { return; }
 
         _connectionFrontBackEnd = new Connection();
-        _connectionFrontBackEnd.Initialize();
 
         _isInitialized = true;
     }
