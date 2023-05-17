@@ -4,6 +4,8 @@ namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [Category("Homie")]
 public partial class Button : ControlBase, IHomieTopicPath {
+    private bool _isDisposed;
+
     static Button() {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(Button), new FrameworkPropertyMetadata(typeof(Button)));
     }
@@ -24,6 +26,19 @@ public partial class Button : ControlBase, IHomieTopicPath {
                     break;
             }
         }, () => true);
+    }
+
+    protected override void Dispose(bool isCalledManually) {
+        if (_isDisposed == false) {
+            if (isCalledManually) {
+                PropertySwitcher?.Dispose();
+            }
+
+            // Free unmanaged resources here and set large fields to null.
+            _isDisposed = true;
+        }
+
+        base.Dispose(isCalledManually);
     }
 
     protected virtual void UpdateHomiePropertyMetadata() {

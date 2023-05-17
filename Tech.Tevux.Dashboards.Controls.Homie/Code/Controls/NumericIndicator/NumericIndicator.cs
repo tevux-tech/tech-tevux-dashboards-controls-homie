@@ -1,4 +1,4 @@
-﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
+namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [HideExposedOption(nameof(Caption))]
 [Category("Homie")]
@@ -18,9 +18,7 @@ public partial class NumericIndicator : NumericOutputControlBase, IHomieTopicPat
     protected override void Dispose(bool isCalledManually) {
         if (_isDisposed == false) {
             if (isCalledManually) {
-                if (PropertySwitcher != null) {
-                    PropertySwitcher.Dispose();
-                }
+                PropertySwitcher?.Dispose();
             }
 
             // Free unmanaged resources here and set large fields to null.
