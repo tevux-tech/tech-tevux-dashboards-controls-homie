@@ -1,4 +1,4 @@
-namespace Tech.Tevux.Dashboards.Controls.Homie;
+﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 public class MyLibrary : ILibrary,
                          IDashboardControlProvider,
@@ -27,6 +27,9 @@ public class MyLibrary : ILibrary,
 
     [InjectedByHost]
     public ISharedLibraryMessagingProvider GlobalMessenger { get; set; } = new EmptySharedLibraryMessagingProvider();
+
+    [InjectedByHost]
+    public ILoggingProvider Log { get; set; } = new EmptyLoggingProvider();
 
     #endregion
 
