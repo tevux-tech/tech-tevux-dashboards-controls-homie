@@ -29,7 +29,7 @@ public class MyLibrary : ILibrary,
     public ISharedLibraryMessagingProvider GlobalMessenger { get; set; } = new EmptySharedLibraryMessagingProvider();
 
     [InjectedByHost]
-    public ILoggingProvider Log { get; set; } = new EmptyLoggingProvider();
+    public ILogger Log { get; set; } = NullLogger.Instance;
 
     #endregion
 

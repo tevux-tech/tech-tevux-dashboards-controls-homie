@@ -8,3 +8,5 @@ global using System.Linq;
 global using System.Windows;
 global using System.Windows.Input;
 global using Tevux.Dashboards.Abstractions;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Logging.Abstractions;

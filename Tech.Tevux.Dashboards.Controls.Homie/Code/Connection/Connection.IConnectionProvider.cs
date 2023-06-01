@@ -25,7 +25,7 @@ public partial class Connection {
 
         if (IsDisconnected) {
             errorMessage = $"Connection to {CurrentDefinition.Parameters} failed.";
-            MyLibrary.Instance.Log.Error(errorMessage);
+            MyLibrary.Instance.Log.LogError(errorMessage);
         } else {
             errorMessage = "";
         }
