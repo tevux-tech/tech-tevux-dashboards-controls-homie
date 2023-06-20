@@ -21,30 +21,25 @@ public partial class Connection : Control, IDisposable, IConnection {
         _realDefinitionCollection.CollectionChanged += HandleAvailableDefinitionsChangedEvent;
 
         // Trying to read definitions from cache. Lots of failure points here.
-        if (_cache.TryRead(this, nameof(AvailableDefinitions), out var value)) {
-            var foundConnectionDefinitions = JsonConvert.DeserializeObject<List<ConnectionDefinition>>(value!.ToString()!);
-            if (foundConnectionDefinitions is List<ConnectionDefinition> definitionsList) {
-                // User has something defined in the file.
-                foreach (var definition in definitionsList) {
-                    _realDefinitionCollection.Add(definition);
-                }
+        if (_cache.TryRead(this, nameof(AvailableDefinitions), out Dictionary<string, string> definitionDictionary)) {
+            // User has something defined in the file.
+            foreach (var definition in definitionDictionary) {
+                _realDefinitionCollection.Add(new ConnectionDefinition() { Name = definition.Key, Parameters = definition.Value });
             }
         }
 
         if (_realDefinitionCollection.Count == 0) {
             // There nothing in the file, so adding default options.
             _realDefinitionCollection.Add(new ConnectionDefinition() { Name = "default", Parameters = "127.0.0.1" });
-            _cache.Write(this, nameof(AvailableDefinitions), AvailableDefinitions);
+            _cache.Write(this, nameof(AvailableDefinitions), AvailableDefinitions.ToDictionary(d => d.Name, d => d.Parameters));
         }
 
 
         // Trying to load last used connection.
-        if (_cache.TryRead(this, nameof(CurrentDefinition), out var value2)) {
-            if (value2 is string nameString) {
-                if (_realDefinitionCollection.Any(c => c.Name == nameString)) {
-                    // Found one, selecting it.
-                    CurrentDefinition = _realDefinitionCollection.Single(b => b.Name == nameString);
-                }
+        if (_cache.TryRead(this, nameof(CurrentDefinition), out string nameString)) {
+            if (_realDefinitionCollection.Any(c => c.Name == nameString)) {
+                // Found one, selecting it.
+                CurrentDefinition = _realDefinitionCollection.Single(b => b.Name == nameString);
             }
         };
 
