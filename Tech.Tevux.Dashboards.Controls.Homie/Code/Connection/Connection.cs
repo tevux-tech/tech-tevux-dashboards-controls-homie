@@ -64,6 +64,6 @@ public partial class Connection : Control, IDisposable, IConnection {
     }
 
     private void HandleAvailableDefinitionsChangedEvent(object? sender, NotifyCollectionChangedEventArgs e) {
-        _cache.Write(this, nameof(AvailableDefinitions), AvailableDefinitions);
+        _cache.Write(this, nameof(AvailableDefinitions), AvailableDefinitions.ToDictionary(d => d.Name, d => d.Parameters));
     }
 }

@@ -15,7 +15,7 @@ public partial class Connection {
                 // Dispose managed objects here.
                 Disconnect();
                 _realDefinitionCollection.CollectionChanged -= HandleAvailableDefinitionsChangedEvent;
-                _homieProvider = null;
+                _homieProvider = null!;
             }
 
             // Free unmanaged resources here and set large fields to null.

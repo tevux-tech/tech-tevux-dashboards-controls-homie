@@ -60,7 +60,7 @@ public partial class TopicSelectorEditor : Control, IDisposable, INotifyProperty
 
     private bool _isDisposed;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged = delegate { };
 
     public void Dispose() {
         // A good article explaining how to implement Dispose. https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
