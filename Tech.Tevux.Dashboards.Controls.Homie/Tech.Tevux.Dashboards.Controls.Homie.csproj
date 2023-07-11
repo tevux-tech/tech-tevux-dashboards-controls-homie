@@ -9,7 +9,7 @@
     <Version>0.29.0</Version>
     <Company>Tevux Technologies</Company>
     <Copyright>© 2022 Tevux Technologies</Copyright>
-    <Title>Homie controls for Tevux Dashboards</Title>
+    <AssemblyTitle>Homie controls</AssemblyTitle>
     <Authors>devbotas</Authors>
     <Description>Provides most common Homie (https://homieiot.github.io/) controls, like Button and Indicator.</Description>
     <RepositoryUrl>https://github.com/tevux-tech/tech-tevux-dashboards-controls-homie</RepositoryUrl>
@@ -75,10 +75,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="Tevux.Dashboards.Abstractions.AssemblyLoadContextAttribute">
-      <FriendlyName>Homie</FriendlyName>
-    </AssemblyAttribute>
-  </ItemGroup>
 </Project>
