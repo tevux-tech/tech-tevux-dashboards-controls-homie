@@ -16,6 +16,8 @@ public class MyLibrary : ILibrary,
         DashboardControlEditors.Add(typeof(TextualIndicator), new List<Type> { typeof(TopicSelectorEditor) });
         DashboardControlEditors.Add(typeof(NumericIndicator), new List<Type> { typeof(TopicSelectorEditor) });
         DashboardControlEditors.Add(typeof(Button), new List<Type> { typeof(TopicSelectorEditor) });
+
+        ConnectionOptionsControl = typeof(Connection);
     }
 
     public static MyLibrary Instance { get; } = new MyLibrary();
@@ -39,6 +41,8 @@ public class MyLibrary : ILibrary,
     public Dictionary<System.Type, List<System.Type>> DashboardControlEditors { get; private set; } = new();
     public List<System.Type> DashboardControls { get; private set; } = new();
     public object ConnectionGuiControl => _connectionFrontBackEnd;
+
+    public Type ConnectionOptionsControl { get; private set; }
 
     #endregion
 
