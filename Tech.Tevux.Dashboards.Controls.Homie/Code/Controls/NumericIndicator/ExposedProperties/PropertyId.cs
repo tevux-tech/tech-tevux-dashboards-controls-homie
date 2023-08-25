@@ -9,7 +9,7 @@ public partial class NumericIndicator {
             ((NumericIndicator)obj).UpdateHomiePropertyMetadata();
         }));
 
-    [ExposedOption(OptionType.SingleLineText)]
+    [ExposedSingleLineText]
     [Category("Homie")]
     public string PropertyId {
         get { return (string)GetValue(PropertyIdProperty); }

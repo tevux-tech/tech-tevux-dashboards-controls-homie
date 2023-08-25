@@ -7,7 +7,7 @@ public partial class Button {
         typeof(Button),
         new PropertyMetadata("no-value"));
 
-    [ExposedOption(OptionType.SingleLineText)]
+    [ExposedSingleLineText]
     [Category("Main")]
     public string Value {
         get { return (string)GetValue(ValueProperty); }

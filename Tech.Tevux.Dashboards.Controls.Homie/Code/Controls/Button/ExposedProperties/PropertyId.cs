@@ -9,7 +9,7 @@ public partial class Button {
             ((Button)obj).UpdateHomiePropertyMetadata();
         }));
 
-    [ExposedOption(OptionType.SingleLineText)]
+    [ExposedSingleLineText]
     [Category("Homie")]
     public string PropertyId {
         get { return (string)GetValue(PropertyIdProperty); }
