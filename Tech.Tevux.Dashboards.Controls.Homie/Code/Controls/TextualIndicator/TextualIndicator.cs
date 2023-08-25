@@ -1,15 +1,15 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-[DashboardControl]
+[HideExposedOption(nameof(Caption))]
 [Category("Homie")]
-public partial class Indicator : OutputControlBase {
-    private bool _isDisposed = false;
+public partial class TextualIndicator : TextualOutputControlBase, IHomieTopicPath {
+    private bool _isDisposed;
 
-    static Indicator() {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(Indicator), new FrameworkPropertyMetadata(typeof(Indicator)));
+    static TextualIndicator() {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(TextualIndicator), new FrameworkPropertyMetadata(typeof(TextualIndicator)));
     }
 
-    public Indicator() {
+    public TextualIndicator() {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         PropertySwitcher = new PropertySwitcher(HandleHomieValueChanged);
@@ -18,14 +18,14 @@ public partial class Indicator : OutputControlBase {
     protected override void Dispose(bool isCalledManually) {
         if (_isDisposed == false) {
             if (isCalledManually) {
-                if (PropertySwitcher != null) {
-                    PropertySwitcher.Dispose();
-                }
+                PropertySwitcher?.Dispose();
             }
 
             // Free unmanaged resources here and set large fields to null.
             _isDisposed = true;
         }
+
+        base.Dispose(isCalledManually);
     }
     protected virtual void UpdateHomiePropertyMetadata() {
         PropertySwitcher.UpdateHomiePropertyMetadata(DeviceId, NodeId, PropertyId, out var errorMessage);
@@ -36,15 +36,15 @@ public partial class Indicator : OutputControlBase {
         Dispatcher.Invoke(() => {
             switch (PropertySwitcher.HomieProperty) {
                 case ClientTextProperty textProperty:
-                    Caption = textProperty.Value;
+                    TextualValue = textProperty.Value;
                     break;
 
                 case ClientNumberProperty numberProperty:
-                    ApplyAppearanceRules((decimal)numberProperty.Value);
+                    ErrorMessage = "Device returns non-text values";
                     break;
 
                 case ClientChoiceProperty choiceProperty:
-                    ApplyAppearanceRules(choiceProperty.Value);
+                    TextualValue = choiceProperty.Value;
                     break;
             }
         });

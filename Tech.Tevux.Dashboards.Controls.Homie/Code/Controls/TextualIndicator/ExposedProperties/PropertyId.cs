@@ -1,15 +1,15 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Indicator {
+public partial class TextualIndicator {
     public static readonly DependencyProperty PropertyIdProperty = DependencyProperty.Register(
         nameof(PropertyId),
         typeof(string),
-        typeof(Indicator),
+        typeof(TextualIndicator),
         new PropertyMetadata("no-property", (obj, e) => {
-            ((Indicator)obj).UpdateHomiePropertyMetadata();
+            ((TextualIndicator)obj).UpdateHomiePropertyMetadata();
         }));
 
-    [ExposedOption(OptionType.SingleLineText)]
+    [ExposedSingleLineText]
     [Category("Homie")]
     public string PropertyId {
         get { return (string)GetValue(PropertyIdProperty); }

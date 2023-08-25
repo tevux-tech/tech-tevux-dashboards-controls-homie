@@ -1,11 +1,13 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class DeviceStatus {
+public partial class TextualIndicator {
     public static readonly DependencyProperty DeviceIdProperty = DependencyProperty.Register(
         nameof(DeviceId),
         typeof(string),
-        typeof(DeviceStatus),
-        new PropertyMetadata("no-device"));
+        typeof(TextualIndicator),
+        new PropertyMetadata("no-device", (obj, e) => {
+            ((TextualIndicator)obj).UpdateHomiePropertyMetadata();
+        }));
 
     [ExposedSingleLineText]
     [Category("Homie")]

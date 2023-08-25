@@ -1,11 +1,9 @@
-﻿using DevBot9.Mvvm;
+﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-namespace Tech.Tevux.Dashboards.Controls.Homie;
-
-[DashboardControl]
+[HideExposedOption(nameof(Caption))]
 [Category("Homie")]
-public partial class DeviceStatus : OutputControlBase {
-    private bool _isDisposed = false;
+public partial class DeviceStatus : TextualOutputControlBase {
+    private bool _isDisposed;
 
     static DeviceStatus() {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(DeviceStatus), new FrameworkPropertyMetadata(typeof(DeviceStatus)));
@@ -22,7 +20,7 @@ public partial class DeviceStatus : OutputControlBase {
         HomieWatcher.Instance.DeviceUpdated += HandleDeviceUpdatedMessage;
 
         if (HomieWatcher.Instance.TryGetClientDevice(DeviceId, out var device)) {
-            ApplyAppearanceRules(device.State.ToString());
+            TextualValue = device.State.ToString();
         }
     }
 
@@ -35,6 +33,8 @@ public partial class DeviceStatus : OutputControlBase {
             // Free unmanaged resources here and set large fields to null.
             _isDisposed = true;
         }
+
+        base.Dispose(isCalledManually);
     }
 
     private void HandleDeviceUpdatedMessage(object? sender, DeviceUpdatedEventArgs deviceUpdatedEventArgs) {
@@ -43,7 +43,7 @@ public partial class DeviceStatus : OutputControlBase {
         Dispatcher.Invoke(() => {
             if (deviceUpdatedEventArgs.DeviceId == DeviceId) {
                 if (HomieWatcher.Instance.TryGetClientDevice(DeviceId, out var device)) {
-                    ApplyAppearanceRules(device.State.ToString());
+                    TextualValue = device.State.ToString();
                 }
             };
         });

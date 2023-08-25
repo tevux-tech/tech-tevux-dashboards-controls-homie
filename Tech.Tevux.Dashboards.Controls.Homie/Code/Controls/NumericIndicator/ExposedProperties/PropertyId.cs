@@ -1,12 +1,12 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Button {
+public partial class NumericIndicator {
     public static readonly DependencyProperty PropertyIdProperty = DependencyProperty.Register(
         nameof(PropertyId),
         typeof(string),
-        typeof(Button),
+        typeof(NumericIndicator),
         new PropertyMetadata("no-property", (obj, e) => {
-            ((Button)obj).UpdateHomiePropertyMetadata();
+            ((NumericIndicator)obj).UpdateHomiePropertyMetadata();
         }));
 
     [ExposedSingleLineText]
