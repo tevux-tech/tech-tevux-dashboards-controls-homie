@@ -6,7 +6,7 @@
     <NoWarn>CS1591</NoWarn>
     <UseWPF>true</UseWPF>
     <OutputType>Library</OutputType>
-    <Version>0.31.0-preview.1</Version>
+    <Version>1.0.0-preview.3</Version>
     <Company>Tevux Technologies</Company>
     <Copyright>© 2022 Tevux Technologies</Copyright>
     <AssemblyTitle>Homie controls</AssemblyTitle>
@@ -46,7 +46,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Themes\Button.xaml">
+    <Page Update="Themes\CommandButton.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
