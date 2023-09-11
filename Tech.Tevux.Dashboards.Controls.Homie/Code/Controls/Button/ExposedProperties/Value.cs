@@ -1,10 +1,10 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Button {
+public partial class CommandButton {
     public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(
         nameof(Value),
         typeof(string),
-        typeof(Button),
+        typeof(CommandButton),
         new PropertyMetadata("no-value"));
 
     [ExposedSingleLineText]

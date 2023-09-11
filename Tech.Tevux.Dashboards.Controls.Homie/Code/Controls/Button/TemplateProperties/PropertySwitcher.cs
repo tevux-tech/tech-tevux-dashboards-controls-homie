@@ -1,10 +1,10 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Button {
+public partial class CommandButton {
     public static readonly DependencyProperty PropertySwitcherProperty = DependencyProperty.Register(
         nameof(PropertySwitcher),
         typeof(PropertySwitcher),
-        typeof(Button),
+        typeof(CommandButton),
         new PropertyMetadata(null));
 
     public PropertySwitcher PropertySwitcher {

@@ -3,14 +3,14 @@
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
 [Category("Homie")]
-public partial class Button : ControlBase, IHomieTopicPath {
+public partial class CommandButton : ControlBase, IHomieTopicPath {
     private bool _isDisposed;
 
-    static Button() {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(Button), new FrameworkPropertyMetadata(typeof(Button)));
+    static CommandButton() {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(CommandButton), new FrameworkPropertyMetadata(typeof(CommandButton)));
     }
 
-    public Button() {
+    public CommandButton() {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         PropertySwitcher = new PropertySwitcher(() => { });
