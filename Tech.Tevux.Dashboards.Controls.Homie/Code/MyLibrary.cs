@@ -18,7 +18,7 @@ public class MyLibrary : ILibrary,
         DashboardControlEditors.Add(typeof(NumericIndicator), new List<Type> { typeof(TopicSelectorEditor) });
         DashboardControlEditors.Add(typeof(CommandButton), new List<Type> { typeof(TopicSelectorEditor) });
 
-        ConnectionOptionsControl = typeof(Connection);
+        ConnectionOptionsControl = typeof(ConnectionOptions);
     }
 
     public static MyLibrary Instance { get; } = new MyLibrary();

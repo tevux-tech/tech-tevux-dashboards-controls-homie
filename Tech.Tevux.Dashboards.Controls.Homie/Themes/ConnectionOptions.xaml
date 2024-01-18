@@ -1,0 +1,73 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:DevBot9.Wpf.Converters;assembly=DevBot9.Wpf.Converters"
+    xmlns:local="clr-namespace:Tech.Tevux.Dashboards.Controls.Homie"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <Style TargetType="{x:Type local:ConnectionOptions}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ConnectionOptions}">
+                    <Grid HorizontalAlignment="Center" DataContext="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ItemsControl
+                            HorizontalAlignment="Center"
+                            Grid.IsSharedSizeScope="True"
+                            ItemsSource="{Binding ConnectionBackend.AvailableDefinitions, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Name" />
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="Parameters" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox
+                                            Grid.Column="0"
+                                            Margin="1,0"
+                                            HorizontalContentAlignment="Right"
+                                            FontWeight="Bold"
+                                            Text="{Binding Name}" />
+                                        <TextBox
+                                            Grid.Column="1"
+                                            Margin="1,0"
+                                            Text="{Binding Parameters}" />
+                                        <Button
+                                            Grid.Column="2"
+                                            Margin="1,0"
+                                            Command="{Binding DataContext.DeleteDefinitionCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            CommandParameter="{Binding}"
+                                            Content="Delete" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <WrapPanel
+                            Grid.Row="1"
+                            Margin="0,15,0,0"
+                            Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Add: " />
+                            <Button
+                                Margin="1,1"
+                                Command="{Binding AddDefinitionCommand}"
+                                Content="local">
+                                <Button.CommandParameter>
+                                    <x:Array Type="system:String">
+                                        <system:String>local</system:String>
+                                        <system:String>127.0.0.1</system:String>
+                                    </x:Array>
+                                </Button.CommandParameter>
+                            </Button>
+                        </WrapPanel>
+                    </Grid>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
