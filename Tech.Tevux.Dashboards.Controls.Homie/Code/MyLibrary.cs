@@ -12,6 +12,7 @@ public class MyLibrary : ILibrary,
         DashboardControls.Add(typeof(DeviceStatus));
         DashboardControls.Add(typeof(TextualIndicator));
         DashboardControls.Add(typeof(NumericIndicator));
+        DashboardControls.Add(typeof(Chart));
 
         DashboardControlEditors.Add(typeof(TextualIndicator), new List<Type> { typeof(TopicSelectorEditor) });
         DashboardControlEditors.Add(typeof(NumericIndicator), new List<Type> { typeof(TopicSelectorEditor) });
