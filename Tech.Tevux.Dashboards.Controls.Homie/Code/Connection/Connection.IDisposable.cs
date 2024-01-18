@@ -10,17 +10,17 @@ public partial class Connection {
     }
 
     protected virtual void Dispose(bool isCalledManually) {
-        if (_isDisposed == false) {
-            if (isCalledManually) {
-                // Dispose managed objects here.
-                Disconnect();
-                _realDefinitionCollection.CollectionChanged -= HandleAvailableDefinitionsChangedEvent;
-                _homieProvider = null!;
-            }
-
-            // Free unmanaged resources here and set large fields to null.
-
-            _isDisposed = true;
+        if (_isDisposed ) { return; }
+        
+        if (isCalledManually) {
+            // Dispose managed objects here.
+            Disconnect();
+            _realDefinitionCollection.CollectionChanged -= HandleAvailableDefinitionsChangedEvent;
+            _homieProvider = null!;
         }
+
+        // Free unmanaged resources here and set large fields to null.
+
+        _isDisposed = true;
     }
 }

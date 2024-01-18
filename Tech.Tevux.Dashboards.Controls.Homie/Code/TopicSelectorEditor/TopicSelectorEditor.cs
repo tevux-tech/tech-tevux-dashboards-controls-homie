@@ -1,8 +1,8 @@
-﻿using DevBot9.Mvvm;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
@@ -20,7 +20,7 @@ public partial class TopicSelectorEditor : Control, IDisposable, INotifyProperty
     public TopicSelectorEditor(Control control) : this() {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
-        ExecuteCommand = new DelegateCommand(() => {
+        ExecuteCommand = new RelayCommand(() => {
             if (control is IHomieTopicPath homieTopicPath) {
                 homieTopicPath.DeviceId = SelectedDevice.DeviceId;
                 var parts = SelectedProperty.PropertyId.Split('/');

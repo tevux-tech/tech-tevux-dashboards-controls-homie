@@ -1,4 +1,4 @@
-﻿using DevBot9.Mvvm;
+﻿using CommunityToolkit.Mvvm.Input;
 
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
@@ -15,7 +15,7 @@ public partial class CommandButton : ControlBase, IHomieTopicPath {
 
         PropertySwitcher = new PropertySwitcher(() => { });
 
-        ExecuteCommand = new DelegateCommand(() => {
+        ExecuteCommand = new RelayCommand(() => {
             switch (PropertySwitcher.HomieProperty) {
                 case ClientTextProperty textProperty:
                     textProperty.Value = Value;
