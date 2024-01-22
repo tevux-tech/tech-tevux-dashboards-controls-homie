@@ -1,10 +1,10 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Chart {
+public partial class TimeChart {
     public static readonly DependencyProperty PropertySwitcherProperty = DependencyProperty.Register(
         nameof(PropertySwitcher),
         typeof(PropertySwitcher),
-        typeof(Chart),
+        typeof(TimeChart),
         new PropertyMetadata(null));
 
     public PropertySwitcher PropertySwitcher {

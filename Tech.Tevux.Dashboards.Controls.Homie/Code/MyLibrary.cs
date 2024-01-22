@@ -13,7 +13,7 @@ public sealed class MyLibrary : ILibrary,
         DashboardControls.Add(typeof(DeviceStatus));
         DashboardControls.Add(typeof(TextualIndicator));
         DashboardControls.Add(typeof(NumericIndicator));
-        DashboardControls.Add(typeof(Chart));
+        DashboardControls.Add(typeof(TimeChart));
 
         DashboardControlEditors.Add(typeof(TextualIndicator), [typeof(TopicSelectorEditor)]);
         DashboardControlEditors.Add(typeof(NumericIndicator), [typeof(TopicSelectorEditor)]);

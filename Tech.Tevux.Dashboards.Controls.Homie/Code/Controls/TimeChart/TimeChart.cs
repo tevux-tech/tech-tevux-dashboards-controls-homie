@@ -4,17 +4,16 @@ using ScottPlot.WPF;
 
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-[TemplatePart(Name = "PART_MainGrid", Type = typeof(Grid))]
 [Category("Homie")]
-public partial class Chart : ControlBase {
+public partial class TimeChart : ControlBase {
     private readonly List<Coordinates> _points = [];
     private WpfPlotGL _plot;
 
-    static Chart() {
-        DefaultStyleKeyProperty.OverrideMetadata(typeof(Chart), new FrameworkPropertyMetadata(typeof(Chart)));
+    static TimeChart() {
+        DefaultStyleKeyProperty.OverrideMetadata(typeof(TimeChart), new FrameworkPropertyMetadata(typeof(TimeChart)));
     }
 
-    public Chart() {
+    public TimeChart() {
         if (DesignerProperties.GetIsInDesignMode(new DependencyObject())) { return; }
 
         PropertySwitcher = new PropertySwitcher(HandleHomieValueChanged);

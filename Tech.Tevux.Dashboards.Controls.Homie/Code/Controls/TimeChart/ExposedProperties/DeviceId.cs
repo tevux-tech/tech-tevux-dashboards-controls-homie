@@ -1,12 +1,12 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Chart {
+public partial class TimeChart {
     public static readonly DependencyProperty DeviceIdProperty = DependencyProperty.Register(
         nameof(DeviceId),
         typeof(string),
-        typeof(Chart),
+        typeof(TimeChart),
         new PropertyMetadata("no-device", (obj, e) => {
-            ((Chart)obj).UpdateHomiePropertyMetadata();
+            ((TimeChart)obj).UpdateHomiePropertyMetadata();
         }));
 
     [ExposedSingleLineText]

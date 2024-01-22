@@ -7,6 +7,6 @@
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/DeviceStatus.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/ConnectionOptions.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/TopicSelectorEditor.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/Chart.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Tech.Tevux.Dashboards.Controls.Homie;Component/Themes/TimeChart.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
