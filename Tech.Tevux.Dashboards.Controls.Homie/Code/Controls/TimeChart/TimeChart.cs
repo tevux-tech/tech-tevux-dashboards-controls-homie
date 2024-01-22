@@ -7,6 +7,7 @@ namespace Tech.Tevux.Dashboards.Controls.Homie;
 [Category("Homie")]
 public partial class TimeChart : ControlBase {
     private readonly List<Coordinates> _points = [];
+    private readonly object _pointsLock = new();
     private WpfPlotGL? _graph;
 
     static TimeChart() {
@@ -19,7 +20,6 @@ public partial class TimeChart : ControlBase {
         PropertySwitcher = new PropertySwitcher(HandleHomieValueChanged);
     }
 
-
     public override void OnApplyTemplate() {
         base.OnApplyTemplate();
 
@@ -28,11 +28,16 @@ public partial class TimeChart : ControlBase {
         if (Template.FindName("PART_ChartGrid", this) is Grid grid) {
             _graph = new WpfPlotGL();
             _graph.Plot.Axes.DateTimeTicks(Edge.Bottom);
-            _graph.Plot.Add.Scatter(_points);
+
+            lock (_pointsLock) {
+                _graph.Plot.Add.Scatter(_points);
+            }
 
             _graph.Menu.Add("Clear", _ => {
-                _points.Clear();
-                _graph.Refresh();
+                lock (_pointsLock) {
+                    _points.Clear();
+                    _graph.Refresh();
+                }
             });
 
             grid.Children.Add(_graph);
@@ -40,11 +45,33 @@ public partial class TimeChart : ControlBase {
     }
 
     private void HandleHomieValueChanged() {
-        Dispatcher.Invoke(() => {
-            if (PropertySwitcher.HomieProperty is not ClientNumberProperty numberProperty) { return; }
+        var newValue = 0.0;
+        var interval = 24m;
 
-            _points.Add(new Coordinates(DateTime.Now.ToOADate(), numberProperty.Value));
-            _graph?.Plot.Axes.AutoScale();
+        Dispatcher.Invoke(() => {
+            if (PropertySwitcher.HomieProperty is ClientNumberProperty numberProperty) {
+                newValue = numberProperty.Value;
+                interval = DataRetentionInterval;
+            } else {
+                ErrorMessage = "Malformed data arrived.";
+            }
+        });
+
+        var earliestPoint = DateTime.Now.AddHours((double)-interval).ToOADate();
+
+        lock (_pointsLock) {
+            var removeIndexTo = _points.FindIndex(x => x.X >= earliestPoint);
+
+            if (removeIndexTo > 0) {
+                _points.RemoveRange(0, removeIndexTo);
+            }
+
+            _points.Add(new Coordinates(DateTime.Now.ToOADate(), newValue));
+        }
+
+        _graph?.Plot.Axes.AutoScale();
+
+        Dispatcher.Invoke(() => {
             _graph?.Refresh();
         });
     }
@@ -52,6 +79,8 @@ public partial class TimeChart : ControlBase {
     private void UpdateHomiePropertyMetadata() {
         PropertySwitcher.UpdateHomiePropertyMetadata(DeviceId, NodeId, PropertyId, out _);
 
-        _points.Clear();
+        lock (_pointsLock) {
+            _points.Clear();
+        }
     }
 }
