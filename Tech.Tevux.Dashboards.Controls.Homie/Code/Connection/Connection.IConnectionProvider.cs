@@ -29,6 +29,7 @@ public partial class Connection {
             errorMessage = $"Connection to {CurrentDefinition.Parameters} failed.";
             MyLibrary.Instance.Log.LogError(errorMessage);
         } else {
+            _cache.Write(this, nameof(CurrentDefinition), CurrentDefinition.Name);
             errorMessage = "";
         }
 

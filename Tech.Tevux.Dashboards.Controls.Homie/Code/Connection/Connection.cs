@@ -46,6 +46,28 @@ public sealed partial class Connection : IDisposable, IConnection {
     }
 
     private void HandleAvailableDefinitionsChangedEvent(object? sender, NotifyCollectionChangedEventArgs e) {
+        switch (e.Action) {
+            case NotifyCollectionChangedAction.Add:
+                foreach (var newItem in e.NewItems!) {
+                    if (newItem is ConnectionDefinition newDefinition) {
+                        newDefinition.PropertyChanged += HandleConnectionDefinitionPropertyChanged;
+                    }
+                }
+                break;
+
+            case NotifyCollectionChangedAction.Remove:
+                foreach (var oldItem in e.OldItems!) {
+                    if (oldItem is ConnectionDefinition oldDefinition) {
+                        oldDefinition.PropertyChanged -= HandleConnectionDefinitionPropertyChanged;
+                    }
+                }
+                break;
+        }
+        
+        _cache.Write(this, nameof(AvailableDefinitions), AvailableDefinitions.ToDictionary(d => d.Name, d => d.Parameters));
+    }
+    
+    private void HandleConnectionDefinitionPropertyChanged(object? sender, PropertyChangedEventArgs e) {
         _cache.Write(this, nameof(AvailableDefinitions), AvailableDefinitions.ToDictionary(d => d.Name, d => d.Parameters));
     }
 }
