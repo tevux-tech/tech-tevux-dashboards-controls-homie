@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+using System.Windows.Controls;
 using ScottPlot;
 using ScottPlot.WPF;
 
@@ -30,7 +30,10 @@ public partial class TimeChart : ControlBase {
             _plot.Plot.Axes.DateTimeTicks(Edge.Bottom);
             _plot.Plot.Add.Scatter(_points);
 
-            grid.Children.Add(_plot);
+            _graph.Menu.Add("Clear", _ => {
+                _points.Clear();
+                _graph.Refresh();
+            });
         }
     }
 
