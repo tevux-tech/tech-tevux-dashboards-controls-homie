@@ -1,4 +1,4 @@
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using ScottPlot;
 using ScottPlot.WPF;
 
@@ -7,7 +7,7 @@ namespace Tech.Tevux.Dashboards.Controls.Homie;
 [Category("Homie")]
 public partial class TimeChart : ControlBase {
     private readonly List<Coordinates> _points = [];
-    private WpfPlotGL _plot;
+    private WpfPlotGL? _graph;
 
     static TimeChart() {
         DefaultStyleKeyProperty.OverrideMetadata(typeof(TimeChart), new FrameworkPropertyMetadata(typeof(TimeChart)));
@@ -26,41 +26,31 @@ public partial class TimeChart : ControlBase {
         if (DesignerProperties.GetIsInDesignMode(this)) { return; }
 
         if (Template.FindName("PART_ChartGrid", this) is Grid grid) {
-            _plot = new WpfPlotGL();
-            _plot.Plot.Axes.DateTimeTicks(Edge.Bottom);
-            _plot.Plot.Add.Scatter(_points);
+            _graph = new WpfPlotGL();
+            _graph.Plot.Axes.DateTimeTicks(Edge.Bottom);
+            _graph.Plot.Add.Scatter(_points);
 
             _graph.Menu.Add("Clear", _ => {
                 _points.Clear();
                 _graph.Refresh();
             });
+
+            grid.Children.Add(_graph);
         }
     }
 
     private void HandleHomieValueChanged() {
         Dispatcher.Invoke(() => {
-            switch (PropertySwitcher.HomieProperty) {
-                case ClientTextProperty textProperty:
-                    break;
+            if (PropertySwitcher.HomieProperty is not ClientNumberProperty numberProperty) { return; }
 
-                case ClientNumberProperty numberProperty:
-                    _points.Add(new Coordinates(DateTime.Now.ToOADate(), numberProperty.Value));
-
-                    _plot?.Plot.Axes.AutoScaleY();
-                    _plot?.Plot.Axes.AutoScaleX();
-
-                    _plot?.Refresh();
-
-                    break;
-
-                case ClientChoiceProperty choiceProperty:
-                    break;
-            }
+            _points.Add(new Coordinates(DateTime.Now.ToOADate(), numberProperty.Value));
+            _graph?.Plot.Axes.AutoScale();
+            _graph?.Refresh();
         });
     }
 
-    protected virtual void UpdateHomiePropertyMetadata() {
-        PropertySwitcher.UpdateHomiePropertyMetadata(DeviceId, NodeId, PropertyId, out var _);
+    private void UpdateHomiePropertyMetadata() {
+        PropertySwitcher.UpdateHomiePropertyMetadata(DeviceId, NodeId, PropertyId, out _);
 
         _points.Clear();
     }
