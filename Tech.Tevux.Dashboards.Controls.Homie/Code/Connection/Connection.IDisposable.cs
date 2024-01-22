@@ -3,15 +3,9 @@
 public partial class Connection {
     private bool _isDisposed;
 
-    public void Dispose() {
-        // A good article explaining how to implement Dispose. https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+    void Dispose(bool isCalledManually) {
+        if (_isDisposed) { return; }
 
-    protected virtual void Dispose(bool isCalledManually) {
-        if (_isDisposed ) { return; }
-        
         if (isCalledManually) {
             // Dispose managed objects here.
             Disconnect();
@@ -23,4 +17,14 @@ public partial class Connection {
 
         _isDisposed = true;
     }
+
+    #region IDisposable Members
+
+    public void Dispose() {
+        // A good article explaining how to implement Dispose. https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion
 }

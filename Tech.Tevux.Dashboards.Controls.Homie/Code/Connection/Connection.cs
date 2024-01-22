@@ -2,15 +2,15 @@
 
 namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public partial class Connection : IDisposable, IConnection {
+public sealed partial class Connection : IDisposable, IConnection {
     private readonly ICacheProvider _cache;
     private HomieWatcher _homieProvider;
+
     public Connection() {
         AvailableDefinitions = _realDefinitionCollection;
-      
+
         _homieProvider = HomieWatcher.Instance;
         _cache = MyLibrary.Instance.Cache;
-
 
         _realDefinitionCollection.CollectionChanged += HandleAvailableDefinitionsChangedEvent;
 
@@ -35,7 +35,7 @@ public partial class Connection : IDisposable, IConnection {
                 // Found one, selecting it.
                 CurrentDefinition = _realDefinitionCollection.Single(b => b.Name == nameString);
             }
-        };
+        }
 
         if (CurrentDefinition is null) {
             // Selecting first available connection, if any.

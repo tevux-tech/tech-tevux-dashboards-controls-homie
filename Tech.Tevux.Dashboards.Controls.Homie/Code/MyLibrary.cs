@@ -1,12 +1,13 @@
 ﻿namespace Tech.Tevux.Dashboards.Controls.Homie;
 
-public class MyLibrary : ILibrary,
-                         IDashboardControlProvider,
-                         IDashboardControlEditorProvider,
-                         IConnectionProvider {
+public sealed class MyLibrary : ILibrary,
+    IDashboardControlProvider,
+    IDashboardControlEditorProvider,
+    IConnectionProvider {
+    Connection _connectionFrontBackEnd = null!;
 
     private bool _isInitialized;
-    Connection _connectionFrontBackEnd = null!;
+
     private MyLibrary() {
         DashboardControls.Add(typeof(CommandButton));
         DashboardControls.Add(typeof(DeviceStatus));
@@ -14,14 +15,26 @@ public class MyLibrary : ILibrary,
         DashboardControls.Add(typeof(NumericIndicator));
         DashboardControls.Add(typeof(Chart));
 
-        DashboardControlEditors.Add(typeof(TextualIndicator), new List<Type> { typeof(TopicSelectorEditor) });
-        DashboardControlEditors.Add(typeof(NumericIndicator), new List<Type> { typeof(TopicSelectorEditor) });
-        DashboardControlEditors.Add(typeof(CommandButton), new List<Type> { typeof(TopicSelectorEditor) });
+        DashboardControlEditors.Add(typeof(TextualIndicator), [typeof(TopicSelectorEditor)]);
+        DashboardControlEditors.Add(typeof(NumericIndicator), [typeof(TopicSelectorEditor)]);
+        DashboardControlEditors.Add(typeof(CommandButton), [typeof(TopicSelectorEditor)]);
 
         ConnectionOptionsControl = typeof(ConnectionOptions);
     }
 
-    public static MyLibrary Instance { get; } = new MyLibrary();
+    public static MyLibrary Instance { get; } = new();
+
+    #region ILibrary Members
+
+    public void Initialize() {
+        if (_isInitialized) { return; }
+
+        _connectionFrontBackEnd = new Connection();
+
+        _isInitialized = true;
+    }
+
+    #endregion
 
     #region Dependency injection
 
@@ -36,26 +49,12 @@ public class MyLibrary : ILibrary,
 
     #endregion
 
-    #region Dependency providers 
+    #region Dependency providers
 
     public IConnection Connection => _connectionFrontBackEnd;
-    public Dictionary<System.Type, List<System.Type>> DashboardControlEditors { get; private set; } = new();
-    public List<System.Type> DashboardControls { get; private set; } = new();
-    public object ConnectionGuiControl => _connectionFrontBackEnd;
-
-    public Type ConnectionOptionsControl { get; private set; }
-
-    #endregion
-
-    #region ILibrary
-
-    public void Initialize() {
-        if (_isInitialized) { return; }
-
-        _connectionFrontBackEnd = new Connection();
-
-        _isInitialized = true;
-    }
+    public Dictionary<Type, List<Type>> DashboardControlEditors { get; } = [];
+    public List<Type> DashboardControls { get; } = [];
+    public Type ConnectionOptionsControl { get; }
 
     #endregion
 
@@ -69,18 +68,17 @@ public class MyLibrary : ILibrary,
         GC.SuppressFinalize(this);
     }
 
-    protected virtual void Dispose(bool isCalledManually) {
-        if (_isDisposed == false) {
-            if (isCalledManually) {
-                // Dispose managed objects here.
-                _connectionFrontBackEnd.Dispose();
-            }
-
-            // Free unmanaged resources here and set large fields to null.
-
-            _isDisposed = true;
+    void Dispose(bool isCalledManually) {
+        if (_isDisposed) { return; }
+        if (isCalledManually) {
+            // Dispose managed objects here.
+            _connectionFrontBackEnd.Dispose();
         }
+
+        // Free unmanaged resources here and set large fields to null.
+
+        _isDisposed = true;
     }
+
     #endregion
 }
-

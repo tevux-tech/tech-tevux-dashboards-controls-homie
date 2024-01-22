@@ -6,10 +6,12 @@ public partial class Connection {
     private bool _isConnected;
     private bool _isDisconnected = true;
 
-    public IEnumerable<ConnectionDefinition> AvailableDefinitions { get; private set; }
+    #region IConnection Members
+
+    public IEnumerable<ConnectionDefinition> AvailableDefinitions { get; private init; }
     public ConnectionDefinition CurrentDefinition { get { return _currentDefinition; } set { SetField(ref _currentDefinition, value); } }
-    public bool IsConnected { get { return _isConnected; } set { SetField(ref _isConnected, value); } }
-    public bool IsDisconnected { get { return _isDisconnected; } set { SetField(ref _isDisconnected, value); } }
+    public bool IsConnected { get { return _isConnected; } private set { SetField(ref _isConnected, value); } }
+    public bool IsDisconnected { get { return _isDisconnected; } private set { SetField(ref _isDisconnected, value); } }
 
     public void Disconnect() {
         _homieProvider.Disconnect();
@@ -32,4 +34,6 @@ public partial class Connection {
 
         return IsConnected;
     }
+
+    #endregion
 }
